@@ -1,7 +1,7 @@
 import {
   isFunction,
   _isPromise
-} from './utils';
+} from './utils/index.js';
 
 export default function before (beforeFunction) {
   if (!isFunction(beforeFunction)) {

@@ -1,4 +1,4 @@
-import { isFunction } from './utils';
+import { isFunction } from './utils/index.js';
 
 export default function bind (context) {
   return function (target, key, descriptor) {
