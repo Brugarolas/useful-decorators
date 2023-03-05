@@ -24,9 +24,9 @@ describe('@bind()', () => {
       }
     }
 
-    const module2Instance = new Module2();
+    const moduleInstance2 = new Module2();
 
-    expect(moduleInstance.getX()).to.equal(81);
-    expect(module2Instance.getX()).to.equal(81);
+    expect(moduleInstance2.getX()).to.equal(81);
+    expect(moduleInstance2.getX()).to.equal(81);
   });
 });

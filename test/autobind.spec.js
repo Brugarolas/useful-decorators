@@ -2,8 +2,6 @@ import autobind from '../autobind.js';
 import { expect } from 'chai';
 
 describe('@autobind()', () => {
-  let barCount;
-
   class Foo {
     @autobind()
     getFoo () {
@@ -19,39 +17,6 @@ describe('@autobind()', () => {
       return this;
     }
   }
-
-  class Bar extends Foo {
-    @autobind()
-    getFoo () {
-      const foo = super.getFoo();
-      barCount++;
-      return foo;
-    }
-
-    getSuperMethod_getFoo () {
-      return super.getFoo;
-    }
-
-    getSuperMethod_onlyOnFoo () {
-      return super.onlyOnFoo;
-    }
-
-    @autobind()
-    onlyOnBar () {
-      return this;
-    }
-  }
-
-  class Car extends Foo {
-    @autobind()
-    getCarFromFoo () {
-      return super.onlyOnFoo();
-    }
-  }
-
-  beforeEach(() => {
-    barCount = 0;
-  });
 
   it('Returns a bound instance for a method', () => {
     const foo = new Foo();
