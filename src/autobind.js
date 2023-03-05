@@ -1,11 +1,11 @@
-import { isFunction } from './utils/index.js';
+import { isFunction } from './utils/helpers.js';
 
 export default function autobind () {
   return function (target, key, descriptor) {
-    let function_ = descriptor.value;
+    let originalFn = descriptor.value;
 
-    if (!isFunction(function_)) {
-      throw new Error(`@autobind() decorator can only be applied to methods, not: ${typeof function_}`);
+    if (!isFunction(originalFn)) {
+      throw new Error(`@autobind() decorator can only be applied to methods, not: ${typeof originalFn}`);
     }
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -16,11 +16,11 @@ export default function autobind () {
     return {
       configurable: true,
       get () {
-        if (definingProperty || this === target.prototype || this.hasOwnProperty(key) || typeof function_ !== 'function') {
-          return function_;
+        if (definingProperty || this === target.prototype || this.hasOwnProperty(key) || typeof originalFn !== 'function') {
+          return originalFn;
         }
 
-        const boundFunction = function_.bind(this);
+        const boundFunction = originalFn.bind(this);
 
         definingProperty = true;
 
@@ -30,7 +30,7 @@ export default function autobind () {
             return boundFunction;
           },
           set (value) {
-            function_ = value;
+            originalFn = value;
             delete this[key];
           }
         });
@@ -40,7 +40,7 @@ export default function autobind () {
         return boundFunction;
       },
       set (value) {
-        function_ = value;
+        originalFn = value;
       }
     };
   };

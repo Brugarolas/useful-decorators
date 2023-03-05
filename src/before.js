@@ -1,6 +1,6 @@
 import {
   isFunction,
-  _isPromise
+  isPromise
 } from './utils/index.js';
 
 export default function before (beforeFunction) {
@@ -19,7 +19,7 @@ export default function before (beforeFunction) {
       const beforeFuncRes = beforeFunction();
       const res = function_.apply(this, args);
 
-      if (_isPromise(beforeFuncRes)) {
+      if (isPromise(beforeFuncRes)) {
         return beforeFuncRes.then(() => {
           return res;
         });
