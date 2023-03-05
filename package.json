@@ -1,0 +1,50 @@
+{
+  "name": "useful-decorators",
+  "description": "Some useful JavaScript decorators",
+  "version": "0.1.0",
+  "author": "andres-brugarolas",
+  "license": "GNU v3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "npm run build:lib && npm run build:test && mocha ./dist/test --require @babel/register",
+    "lint": "eslint ./src ./test",
+    "build:lib": "babel ./src --out-dir ./dist --copy-files",
+    "build:test": "babel ./test --out-dir ./dist/test --copy-files",
+    "utils:outdated": "npm outdated",
+    "utils:updates": "ncu",
+    "utils:upgrades": "ncu -u"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/index.js",
+    "dist/autobind.js"
+  ],
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.21.0"
+  },
+  "engines": {
+    "node": ">=12.22.0"
+  },
+  "browserslist": [
+    ">0.25%",
+    "not dead",
+    "not IE > 5",
+    "not android < 5"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/plugin-proposal-decorators": "^7.21.0",
+    "@babel/plugin-transform-runtime": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.21.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.35.0",
+    "eslint-config-canonical": "^40.0.8",
+    "mocha": "^10.2.0",
+    "npm-check-updates": "^16.7.10",
+    "sinon": "^15.0.1",
+    "sinon-chai": "^3.7.0"
+  }
+}
