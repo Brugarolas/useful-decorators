@@ -1,8 +1,6 @@
 import bind from '../bind.js';
 import { expect } from 'chai';
 
-const root = typeof window !== 'undefined' ? window : global;
-
 describe('@bind()', () => {
   it('Binds context OK', function () {
     this.x = 9;

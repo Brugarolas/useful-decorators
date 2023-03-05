@@ -1,8 +1,6 @@
 import autobind from '../autobind.js';
 import { expect } from 'chai';
 
-const root = typeof window !== 'undefined' ? window : global;
-
 describe('@autobind()', () => {
   let barCount;
 
