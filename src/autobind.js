@@ -1,9 +1,11 @@
-export default function autobind () {
+import { _isFunction } from './utils/index.js';
+
+export default function _autobind () {
   return function (target, key, descriptor) {
     let fn = descriptor.value
 
-    if (typeof fn !== 'function') {
-      throw new Error(`@autobind decorator can only be applied to methods not: ${typeof fn}`);
+    if (_isFunction(fn)) {
+      throw new Error(`@autobind() decorator can only be applied to methods, not: ${typeof fn}`);
     }
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the

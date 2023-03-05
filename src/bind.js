@@ -1,9 +1,11 @@
-export default function bind (context) {
+import { _isFunction } from './utils/index.js';
+
+export default function _bind (context) {
   return function (target, key, descriptor) {
     let fn = descriptor.value;
 
-    if (typeof fn !== 'function') {
-      throw new Error(`@bind decorator can only be applied to methods not: ${typeof fn}`);
+    if (_isFunction(fn)) {
+      throw new Error(`@bind decorator() can only be applied to methods, not: ${typeof fn}`);
     }
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the

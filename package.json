@@ -21,7 +21,13 @@
     "dist/autobind.js"
   ],
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.21.0"
+    "@babel/runtime-corejs3": "^7.21.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.defer": "^4.1.0",
+    "lodash.delay": "^4.1.1",
+    "lodash.memoize": "^4.1.2",
+    "lodash.once": "^4.1.1",
+    "lodash.throttle": "^4.1.1"
   },
   "engines": {
     "node": ">=12.22.0"
