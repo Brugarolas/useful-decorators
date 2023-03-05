@@ -1,7 +1,7 @@
 import {
   isFunction,
   isPromise
-} from './utils/index.js';
+} from './utils/helpers.js';
 
 export default function before (beforeFunction) {
   if (!isFunction(beforeFunction)) {
@@ -9,15 +9,15 @@ export default function before (beforeFunction) {
   }
 
   return function (key, target, descriptor) {
-    const function_ = descriptor.value;
+    const originalFunction = descriptor.value;
 
-    if (!isFunction(function_)) {
+    if (!isFunction(originalFunction)) {
       throw new Error(`@before(fn) decorator can only be applied to methods, not: ${typeof fn}`);
     }
 
     descriptor.value = function (...args) {
       const beforeFuncRes = beforeFunction();
-      const res = function_.apply(this, args);
+      const res = originalFunction.apply(this, args);
 
       if (isPromise(beforeFuncRes)) {
         return beforeFuncRes.then(() => {

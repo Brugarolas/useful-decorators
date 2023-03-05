@@ -11,7 +11,7 @@ export default function after (afterFunction) {
   return function (target, key, descriptor) {
     const originalFunction = descriptor.value;
 
-    if (!isFunction(function_)) {
+    if (!isFunction(originalFunction)) {
       throw new Error(`@after(fn) decorator can only be applied to methods, not: ${typeof fn}`);
     }
 
