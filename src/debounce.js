@@ -1,4 +1,4 @@
-const debounceFn = require('lodash.debounce');
+import debounceFn from 'lodash.debounce';
 
 export default function debounce (milliseconds = 0, options = {}) {
   return function (target, key, descriptor) {

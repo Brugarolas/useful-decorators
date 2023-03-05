@@ -1,4 +1,4 @@
-const deferFn = require('lodash.defer');
+import deferFn from 'lodash.defer';
 
 export default function defer (milliseconds = 0, options = {}) {
   return function (target, key, descriptor) {

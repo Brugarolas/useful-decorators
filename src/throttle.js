@@ -1,4 +1,4 @@
-const throttleFn = require('lodash.throttle');
+import throttleFn from 'lodash.throttle';
 
 export default function throttle (milliseconds = 0, options = {}) {
   return function (target, key, descriptor) {

@@ -1,4 +1,4 @@
-const onceFn = require('lodash.once');
+import onceFn from 'lodash.once';
 
 export default function once () {
   return function (target, key, descriptor) {

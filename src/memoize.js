@@ -1,4 +1,4 @@
-const memoizeFn = require('lodash.memoize');
+import memoizeFn from 'lodash.memoize';
 
 export default function memoize () {
   return function (target, key, descriptor) {

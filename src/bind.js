@@ -1,10 +1,10 @@
-import { _isFunction } from './utils';
+import { isFunction } from './utils';
 
 export default function bind (context) {
   return function (target, key, descriptor) {
     let function_ = descriptor.value;
 
-    if (_isFunction(function_)) {
+    if (!isFunction(function_)) {
       throw new Error(`@bind decorator() can only be applied to methods, not: ${typeof function_}`);
     }
 

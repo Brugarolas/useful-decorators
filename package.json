@@ -10,7 +10,8 @@
     "test": "npm run build:lib && npm run build:test && mocha ./dist/test --require @babel/register",
     "lint": "eslint ./src ./test",
     "lint:fix": "eslint --fix ./src ./test",
-    "build:lib": "babel ./src --out-dir ./dist --copy-files",
+    "clean": "rimraf ./dist",
+    "build:lib": "npm run clean && babel ./src --out-dir ./dist --copy-files",
     "build:test": "babel ./test --out-dir ./dist/test --copy-files",
     "utils:outdated": "npm outdated",
     "utils:updates": "ncu",
@@ -28,7 +29,8 @@
     "lodash.delay": "^4.1.1",
     "lodash.memoize": "^4.1.2",
     "lodash.once": "^4.1.1",
-    "lodash.throttle": "^4.1.1"
+    "lodash.throttle": "^4.1.1",
+    "on-change": "^4.0.2"
   },
   "engines": {
     "node": ">=12.22.0"
@@ -51,6 +53,7 @@
     "eslint-config-canonical": "^40.0.8",
     "mocha": "^10.2.0",
     "npm-check-updates": "^16.7.10",
+    "rimraf": "^4.3.0",
     "sinon": "^15.0.1",
     "sinon-chai": "^3.7.0"
   }

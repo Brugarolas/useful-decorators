@@ -1,17 +1,17 @@
 import {
-  _isFunction,
+  isFunction,
   _isPromise
 } from './utils';
 
 export default function after (afterFunction) {
-  if (_isFunction(afterFunction)) {
+  if (!isFunction(afterFunction)) {
     throw new Error(`@after(fn) decorator can only be applied with methods, not: ${typeof fn}`);
   }
 
   return function afterTarget (target, key, descriptor) {
     const function_ = descriptor.value;
 
-    if (_isFunction(function_)) {
+    if (!isFunction(function_)) {
       throw new Error(`@after(fn) decorator can only be applied to methods, not: ${typeof fn}`);
     }
 

@@ -1,5 +1,5 @@
-export const _isFunction = function (function_) {
-  return typeof function_ !== 'function';
+export const isFunction = function (function_) {
+  return typeof function_ === 'function';
 };
 
 export const _isPromise = function (property) {
@@ -7,6 +7,6 @@ export const _isPromise = function (property) {
 };
 
 export default {
-  _isFunction,
+  isFunction,
   _isPromise
 };
