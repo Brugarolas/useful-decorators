@@ -1,14 +1,14 @@
-import { expect } from 'chai';
 import bind from '../bind.js';
+import { expect } from 'chai';
 
-const root = (typeof window !== 'undefined') ? window : global;
+const root = typeof window !== 'undefined' ? window : global;
 
-describe('@bind()', function () {
+describe('@bind()', () => {
   it('Binds context OK', function () {
     this.x = 9;
 
     class Module {
-      x =  81
+      x = 81;
 
       getX () {
         return this.x;
@@ -18,7 +18,7 @@ describe('@bind()', function () {
     const moduleInstance = new Module();
 
     class Module2 {
-      x = 14
+      x = 14;
 
       @bind(moduleInstance)
       getX () {

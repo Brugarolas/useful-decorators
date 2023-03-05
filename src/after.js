@@ -1,22 +1,27 @@
-import { _isPromise, _isFunction } from './utils/index.js';
+import {
+  _isFunction,
+  _isPromise
+} from './utils';
 
-export default function _after(afterFunc) {
-  if (_isFunction(afterFunc)) {
+export default function after (afterFunction) {
+  if (_isFunction(afterFunction)) {
     throw new Error(`@after(fn) decorator can only be applied with methods, not: ${typeof fn}`);
   }
 
-  return function afterTarget(target, key, descriptor) {
-    const func = descriptor.value;
+  return function afterTarget (target, key, descriptor) {
+    const function_ = descriptor.value;
 
-    if (_isFunction(func)) {
+    if (_isFunction(function_)) {
       throw new Error(`@after(fn) decorator can only be applied to methods, not: ${typeof fn}`);
     }
 
-    descriptor.value = function descriptorValue(...args) {
-      const res = func.apply(this, args);
-      const afterFuncRes = afterFunc();
+    descriptor.value = function descriptorValue (...args) {
+      const res = function_.apply(this, args);
+      const afterFuncRes = afterFunction();
       if (_isPromise(afterFuncRes)) {
-        return afterFuncRes.then(() => res);
+        return afterFuncRes.then(() => {
+          return res;
+        });
       }
 
       return res;
@@ -24,4 +29,4 @@ export default function _after(afterFunc) {
 
     return descriptor;
   };
-};
+}

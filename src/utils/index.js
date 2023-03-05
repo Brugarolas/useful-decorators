@@ -1,9 +1,12 @@
-export const _isFunction = function (fn) {
-  return typeof fn !== 'function';
-}
-
-export const _isPromise = function (prop) {
-  return prop !== null && (typeof prop === 'object' || typeof prop === 'function') && typeof prop.then === 'function';
+export const _isFunction = function (function_) {
+  return typeof function_ !== 'function';
 };
 
-export default { _isFunction, _isPromise };
+export const _isPromise = function (property) {
+  return property !== null && (typeof property === 'object' || typeof property === 'function') && typeof property.then === 'function';
+};
+
+export default {
+  _isFunction,
+  _isPromise
+};

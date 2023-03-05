@@ -1,75 +1,75 @@
-import { expect } from 'chai';
 import autobind from '../autobind.js';
+import { expect } from 'chai';
 
-const root = (typeof window !== 'undefined') ? window : global;
+const root = typeof window !== 'undefined' ? window : global;
 
-describe('@autobind()', function () {
+describe('@autobind()', () => {
   let barCount;
 
   class Foo {
     @autobind()
-    getFoo() {
+    getFoo () {
       return this;
     }
 
-    getFooAgain() {
+    getFooAgain () {
       return this;
     }
 
     @autobind()
-    onlyOnFoo() {
+    onlyOnFoo () {
       return this;
     }
   }
 
   class Bar extends Foo {
     @autobind()
-    getFoo() {
+    getFoo () {
       const foo = super.getFoo();
       barCount++;
       return foo;
     }
 
-    getSuperMethod_getFoo() {
+    getSuperMethod_getFoo () {
       return super.getFoo;
     }
 
-    getSuperMethod_onlyOnFoo() {
+    getSuperMethod_onlyOnFoo () {
       return super.onlyOnFoo;
     }
 
     @autobind()
-    onlyOnBar() {
+    onlyOnBar () {
       return this;
     }
   }
 
   class Car extends Foo {
     @autobind()
-    getCarFromFoo() {
+    getCarFromFoo () {
       return super.onlyOnFoo();
     }
   }
 
-  beforeEach(function () {
-    barCount = 0
+  beforeEach(() => {
+    barCount = 0;
   });
 
-  it('Returns a bound instance for a method', function () {
+  it('Returns a bound instance for a method', () => {
     const foo = new Foo();
     const { getFoo } = foo;
 
     expect(getFoo()).to.equal(foo);
   });
 
-  it('Sets the correct prototype descriptor options', function () {
+  it('Sets the correct prototype descriptor options', () => {
     const desc = Object.getOwnPropertyDescriptor(Foo.prototype, 'getFoo');
 
     expect(desc.configurable).to.equal(true);
     expect(desc.enumerable).to.equal(false);
   });
 
-  it('Works with multiple instances of the same class', function () {
+  it('Works with multiple instances of the same class', () => {
     const foo1 = new Foo();
     const foo2 = new Foo();
 

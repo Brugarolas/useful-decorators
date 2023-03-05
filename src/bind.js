@@ -1,11 +1,11 @@
-import { _isFunction } from './utils/index.js';
+import { _isFunction } from './utils';
 
-export default function _bind (context) {
+export default function bind (context) {
   return function (target, key, descriptor) {
-    let fn = descriptor.value;
+    let function_ = descriptor.value;
 
-    if (_isFunction(fn)) {
-      throw new Error(`@bind decorator() can only be applied to methods, not: ${typeof fn}`);
+    if (_isFunction(function_)) {
+      throw new Error(`@bind decorator() can only be applied to methods, not: ${typeof function_}`);
     }
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -15,29 +15,29 @@ export default function _bind (context) {
 
     return {
       configurable: true,
-      get() {
-        if (definingProperty || this === target.prototype || this.hasOwnProperty(key) || typeof fn !== 'function') {
-          return fn;
+      get () {
+        if (definingProperty || this === target.prototype || this.hasOwnProperty(key) || typeof function_ !== 'function') {
+          return function_;
         }
 
-        let boundFn = fn.bind(context);
+        const boundFunction = function_.bind(context);
         definingProperty = true;
         Object.defineProperty(this, key, {
           configurable: true,
-          get() {
-            return boundFn;
+          get () {
+            return boundFunction;
           },
-          set(value) {
-            fn = value;
+          set (value) {
+            function_ = value;
             delete this[key];
           }
         });
         definingProperty = false;
-        return boundFn;
+        return boundFunction;
       },
-      set(value) {
-        fn = value;
+      set (value) {
+        function_ = value;
       }
     };
-  }
+  };
 }

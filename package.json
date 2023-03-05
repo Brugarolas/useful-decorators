@@ -9,6 +9,7 @@
   "scripts": {
     "test": "npm run build:lib && npm run build:test && mocha ./dist/test --require @babel/register",
     "lint": "eslint ./src ./test",
+    "lint:fix": "eslint --fix ./src ./test",
     "build:lib": "babel ./src --out-dir ./dist --copy-files",
     "build:test": "babel ./test --out-dir ./dist/test --copy-files",
     "utils:outdated": "npm outdated",

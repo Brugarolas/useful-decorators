@@ -1,11 +1,11 @@
 const debounceFn = require('lodash.debounce');
 
-export function _debounce(milliseconds = 0, options = {}) {
-  return function(target, key, descriptor) {
+export default function debounce (milliseconds = 0, options = {}) {
+  return function (target, key, descriptor) {
     const map = new WeakMap();
     const originalMethod = descriptor.value;
 
-    descriptor.value = function(...params) {
+    descriptor.value = function (...parameters) {
       let debounced = map.get(this);
 
       if (!debounced) {
@@ -13,7 +13,7 @@ export function _debounce(milliseconds = 0, options = {}) {
         map.set(this, debounced);
       }
 
-      debounced(...params);
+      debounced(...parameters);
     };
 
     return descriptor;
