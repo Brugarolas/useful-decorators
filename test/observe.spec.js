@@ -2,16 +2,19 @@ import observe from '../observe.js';
 import { expect } from 'chai';
 
 describe('@observe(fn)', () => {
-  it('Observe object OK', function () {
+  it('Observe object OK', () => {
     let changes = 0;
 
-    let onChange = function () {
+    const onChange = function () {
       changes++;
-    }
+    };
 
     class Module {
       @observe(onChange)
-      data = { a: 1, b: 2 }
+        data = {
+          a: 1,
+          b: 2
+        };
     }
 
     const module = new Module();

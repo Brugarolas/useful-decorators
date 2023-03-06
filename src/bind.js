@@ -21,19 +21,22 @@ export default function bind (context) {
         }
 
         const boundFunction = originalFn.bind(context);
-        definingProperty = true;
 
+        definingProperty = true;
         Object.defineProperty(this, key, {
           configurable: true,
+
           get () {
             return boundFunction;
           },
+
           set (value) {
             originalFn = value;
             delete this[key];
           }
         });
         definingProperty = false;
+
         return boundFunction;
       },
       set (value) {

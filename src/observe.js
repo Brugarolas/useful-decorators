@@ -21,18 +21,18 @@ export default function observe (observerCallback, options) {
         }
 
         definingProperty = true;
-
         Object.defineProperty(this, key, {
           configurable,
+
           get () {
             return observedObject;
           },
+
           set (value) {
             observedObject = onChangeFn(value, observerCallback, options);
             delete this[key];
           }
         });
-
         definingProperty = false;
 
         return observedObject;

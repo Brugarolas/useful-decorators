@@ -1,7 +1,7 @@
 import bind from '../bind.js';
 import { expect } from 'chai';
 
-describe('@bind()', () => {
+describe('@bind(context)', () => {
   it('Binds context OK', function () {
     this.x = 9;
 

@@ -20,7 +20,17 @@
   "main": "dist/index.js",
   "files": [
     "dist/index.js",
-    "dist/autobind.js"
+    "dist/after.js",
+    "dist/autobind.js",
+    "dist/before.js",
+    "dist/bind.js",
+    "dist/debounce.js",
+    "dist/defer.js",
+    "dist/delay.js",
+    "dist/memoize.js",
+    "dist/observe.js",
+    "dist/once.js",
+    "dist/throttle.js"
   ],
   "dependencies": {
     "@babel/runtime-corejs3": "^7.21.0",
