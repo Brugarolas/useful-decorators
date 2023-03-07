@@ -18,3 +18,4 @@
 - @provide()
 - @singleton()
 - @throttle(ms, options)
+- @watch(obj, propKey, options)

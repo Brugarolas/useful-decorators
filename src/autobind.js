@@ -32,8 +32,8 @@ export default function autobind () {
           },
 
           set (value) {
-            originalFn = value;
             delete this[key];
+            originalFn = value;
           }
         });
         definingProperty = false;

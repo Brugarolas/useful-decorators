@@ -39,8 +39,8 @@ export default function observe (observerCallback, options) {
       },
 
       set (value) {
-        observedObject = value;
         delete this[key];
+        observedObject = value;
       }
     };
   };

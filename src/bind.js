@@ -5,7 +5,7 @@ export default function bind (context) {
     let originalFn = descriptor.value;
 
     if (!isFunction(originalFn)) {
-      throw new Error(`@bind decorator() can only be applied to methods, not: ${typeof originalFn}`);
+      throw new Error(`@bind() decorator can only be applied to methods, not: ${typeof originalFn}`);
     }
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -31,8 +31,8 @@ export default function bind (context) {
           },
 
           set (value) {
-            originalFn = value;
             delete this[key];
+            originalFn = value;
           }
         });
         definingProperty = false;
