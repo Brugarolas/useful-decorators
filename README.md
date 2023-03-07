@@ -163,7 +163,7 @@ const moduleInstance2 = new Module2();
 Similar to `@throttle()`. Debounces a function so it's optimized for multile sequential calls. [Differences between Debounce and Throttle](https://github.com/wycats/javascript-decorators). [Check Lodash documentation for Debounce options](https://lodash.com/docs/4.17.15#debounce).
 
 ```js
-import { bind } from 'useful-decorators';
+import { debounce } from 'useful-decorators';
 
 class Module {
   @debounce(500, options)
@@ -173,5 +173,50 @@ class Module {
 }
 
 // Now userStopsTyping will only called when the user stops typing for more than 500 ms.
+```
+
+### `@defer()`
+
+Defers invoking the func until the current call stack has cleared.
+
+```js
+import { defer } from 'useful-decorators';
+
+class Module {
+  @defer()
+  createVirtualDOM () {
+    ...
+  }
+}
+```
+
+### `@delay(ms)`
+
+Invokes function after waiting specified milliseconds on each call.
+
+```js
+import { delay } from 'useful-decorators';
+
+class Module {
+  @delay(1000)
+  sendDataToMarketing () {
+    ...
+  }
+}
+```
+
+### `@immutable()`
+
+Freezes the object and does not allow for re-declarating it or changing it's child properties.
+
+```js
+import { immutable } from 'useful-decorators';
+
+class Module {
+  @immutable()
+  data = { a: 5 };
+}
+
+// If you try to re-declare data or change it's children properties, it will throw a TypeError.
 ```
 
