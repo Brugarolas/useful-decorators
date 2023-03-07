@@ -243,7 +243,7 @@ class Instance {
 // Note that both the property and the class should be have the same name (@singleton() converts first letter to lower case.)
 ```
 
-`@provide()` is similar, but it saves for later injection, not classes, but class objects, instances or functions.
+`@provide()` is similar, but it saves for later injection, not classes, but objects, class instances or functions.
 
 ```js
 import { provide, inject } from 'useful-decorators';
@@ -259,10 +259,10 @@ class Instance {
 }
 
 // Property module will be injected in module properties of instances of Instance class.
-// Note that both the provided property and injected property should have the same language.
+// Note that both the provided property and injected property should have the same names.
 ```
 
-But that thing of the language isn't entirelly true, we can pass our own names for `@singleton()`, `@provide()`, `@inject()`.
+But that thing of the names isn't entirelly true, we can pass our own names for `@singleton()`, `@provide()`, `@inject()`.
 
 Let's see an example:
 
@@ -278,4 +278,84 @@ class Instance {
   @inject('moduleInstance')
   module;
 }
+```
+
+### `@interval(ms)`
+
+Executes a function infinite times in an interval.
+
+```js
+import { interval } from 'useful-decorators';
+
+class Module {
+  @interval(500)
+  checkIfDocumentHasDownloadedAndReady() {
+    ...
+  }
+}
+
+// It will execute that function once every 500 milliseconds.
+```
+
+### `@memoize(ms)`
+
+Optimizes a function by memoizing its results.
+
+```js
+import { memoize } from 'useful-decorators';
+
+class Module {
+  @memoize()
+  expensiveComputations(x, y) {
+    ...
+  }
+}
+
+// It will memoize the function result and will not execute the function again for the same parameters.
+```
+
+### `@observe(callback, options)`
+
+Observe a property and for each change, shallow or deep, it will execute the passing callback. [Check on-change documentation for more options](https://github.com/sindresorhus/on-change).
+
+```js
+import { observe } from 'useful-decorators';
+
+let changes = 0;
+
+const onChange = function () {
+  changes++;
+};
+
+class Module {
+  @observe(onChange)
+  data = {
+    a: 1,
+    b: 2
+  };
+}
+
+const module = new Module();
+
+module.data.a = 2;
+module.data.b = 3;
+
+// As there has been two changes, `changes` property is 2.
+```
+
+### `@once()`
+
+Creates a function that is restricted to invoking once. Repeat calls to the function return the value of the first invocation. The function is invoked with the this binding.
+
+```js
+import { once } from 'useful-decorators';
+
+class Module {
+  @once()
+  expensiveInit() {
+    ...
+  }
+}
+
+// `expensiveInit()` will only be executed once, no matter what. The other invocations will return the first invocation result.
 ```
