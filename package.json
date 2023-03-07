@@ -28,9 +28,12 @@
     "dist/defer.js",
     "dist/delay.js",
     "dist/immutable.js",
+    "dist/inject.js",
     "dist/memoize.js",
     "dist/observe.js",
     "dist/once.js",
+    "dist/provide.js",
+    "dist/singleton.js",
     "dist/throttle.js"
   ],
   "dependencies": {
@@ -51,6 +54,12 @@
     "not dead",
     "not IE > 5",
     "not android < 5"
+  ],
+  "keywords": [
+    "javascript",
+    "babel",
+    "decorators",
+    "annotations"
   ],
   "devDependencies": {
     "@babel/cli": "^7.21.0",
