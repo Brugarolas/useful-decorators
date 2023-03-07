@@ -26,7 +26,7 @@ describe('@bind(context)', () => {
 
     const moduleInstance2 = new Module2();
 
-    expect(moduleInstance2.getX()).to.equal(81);
+    expect(moduleInstance.getX()).to.equal(81);
     expect(moduleInstance2.getX()).to.equal(81);
   });
 });
