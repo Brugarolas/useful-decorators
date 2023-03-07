@@ -222,7 +222,7 @@ class Module {
 
 ### `@provide()`, `@singleton` & `@inject()`
 
-`@inject()` will inject the dependencies that has been instanciated with `@provide` or `@inject`
+`@inject()` will inject the dependencies that has been instanciated with `@provide()` or `@singleton()`
 
 `@singleton()` is a class decorator what will instance a single singleton of the specified class, and will store it for using it later.
 
