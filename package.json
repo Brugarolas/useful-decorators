@@ -28,6 +28,7 @@
     "dist/defer.js",
     "dist/delay.js",
     "dist/immutable.js",
+    "dist/interval.js",
     "dist/inject.js",
     "dist/memoize.js",
     "dist/observe.js",
@@ -59,7 +60,8 @@
     "javascript",
     "babel",
     "decorators",
-    "annotations"
+    "annotations",
+    "aspects"
   ],
   "devDependencies": {
     "@babel/cli": "^7.21.0",

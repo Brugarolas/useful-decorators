@@ -5,6 +5,7 @@ export { default as bind } from './bind.js';
 export { default as debounce } from './debounce.js';
 export { default as defer } from './defer.js';
 export { default as delay } from './delay.js';
+export { default as interval } from './interval.js';
 export { default as inject } from './inject.js';
 export { default as memoize } from './memoize.js';
 export { default as observe } from './observe.js';
