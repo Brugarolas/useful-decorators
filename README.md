@@ -359,3 +359,80 @@ class Module {
 
 // `expensiveInit()` will only be executed once, no matter what. The other invocations will return the first invocation result.
 ```
+
+### `@throttle()`
+
+Similar to `@debounce()`. Throttles a function so it's optimized for multile sequential calls. [Differences between Debounce and Throttle](https://github.com/wycats/javascript-decorators). [Check Lodash documentation for Throttle options](https://lodash.com/docs/4.17.15#debounce).
+
+```js
+import { throttle } from 'useful-decorators';
+
+class Module {
+  @throttle(500, options)
+  resizing () {
+    search(userTyping.value);
+  }
+}
+
+// Now resizing will be executed once in every 500 ms.
+```
+
+### `@watch(parent, childKey, options)`
+
+Similar to `@observe(callback)`, but inverted. `@observe(callback)` is applied to an object and requires a function as parameter in the decorator, `@watch(parent, childKey)` is applied to a function and requires an object as parameter in the decorator.
+
+Watch a property and for each change, shallow or deep, it will execute the function the decorator is applied. [Check on-change documentation for more options](https://github.com/sindresorhus/on-change).
+
+```js
+let changes = 0;
+
+const data = {
+  reactive: {
+    a: 1,
+    b: 2
+  }
+};
+
+  class Module {
+    @watch(data, 'reactive')
+    onChange () {
+    changes++;
+  }
+}
+
+const module = new Module();
+
+data.reactive.a = 2;
+data.reactive.b = 3;
+
+// As there has been two changes, `changes` property is 2.
+```
+
+Can also be used in conjuction with `@singleton()` or `@provide()` as `@watch('injectName', 'childKey')` can be usen in conjuntion with dependency injection.
+
+```js
+let changes = 0;
+
+@singleton()
+class Data {
+  reactive = {
+    a: 1,
+    b: 2
+  };
+}
+
+class Module {
+  @watch('data', 'reactive')
+  onChange () {
+    changes++;
+  }
+}
+
+const module = new Module();
+const data = mapInjects.get('data');
+
+data.reactive.a = 2;
+data.reactive.b = 3;
+
+// As there has been two changes, `changes` property is 2.
+```
