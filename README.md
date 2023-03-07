@@ -220,3 +220,62 @@ class Module {
 // If you try to re-declare data or change it's children properties, it will throw a TypeError.
 ```
 
+### `@provide()`, `@singleton` & `@inject()`
+
+`@inject()` will inject the dependencies that has been instanciated with `@provide` or `@inject`
+
+`@singleton()` is a class decorator what will instance a single singleton of the specified class, and will store it for using it later.
+
+```js
+import { singleton, inject } from 'useful-decorators';
+
+@singleton()
+class Module {
+  x = 5;
+}
+
+class Instance {
+  @inject()
+  module;
+}
+
+// An instance of Module class will be injected in module properties of instances of Instance class.
+// Note that both the property and the class should be have the same name (@singleton() converts first letter to lower case.)
+```
+
+`@provide()` is similar, but it saves for later injection, not classes, but class objects, instances or functions.
+
+```js
+import { provide, inject } from 'useful-decorators';
+
+class Module {
+  @provide()
+  module = { data: 5 };
+}
+
+class Instance {
+  @inject()
+  module;
+}
+
+// Property module will be injected in module properties of instances of Instance class.
+// Note that both the provided property and injected property should have the same language.
+```
+
+But that thing of the language isn't entirelly true, we can pass our own names for `@singleton()`, `@provide()`, `@inject()`.
+
+Let's see an example:
+
+```js
+import { singleton, inject } from 'useful-decorators';
+
+@singleton('moduleInstance')
+class Module {
+  x = 5;
+}
+
+class Instance {
+  @inject('moduleInstance')
+  module;
+}
+```
