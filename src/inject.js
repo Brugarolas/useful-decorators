@@ -1,12 +1,10 @@
-import { isFunction } from './utils/helpers.js';
+import { mapInjects } from './utils/injects.js';
 
-export default function autobind () {
+export default function inject (name) {
   return function (target, key, descriptor) {
-    let originalFn = descriptor.value;
+    let injectedObject = mapInjects.get(name || key);
 
-    if (!isFunction(originalFn)) {
-      throw new Error(`@autobind() decorator can only be applied to methods, not: ${typeof originalFn}`);
-    }
+    const { configurable } = descriptor;
 
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
     // getter for the property which is being replaced. This causes infinite
@@ -14,35 +12,35 @@ export default function autobind () {
     let definingProperty = false;
 
     return {
-      configurable: true,
+      configurable,
 
       get () {
-        if (definingProperty || this === target.prototype || this.hasOwnProperty(key) || typeof originalFn !== 'function') {
-          return originalFn;
+        if (definingProperty || this === target.prototype || this.hasOwnProperty(key)) {
+          return injectedObject;
         }
 
-        const boundFunction = originalFn.bind(this);
+        injectedObject = mapInjects.get(name || key);
 
         definingProperty = true;
         Object.defineProperty(this, key, {
           configurable: true,
 
           get () {
-            return boundFunction;
+            return injectedObject;
           },
 
           set (value) {
-            originalFn = value;
+            injectedObject = value;
             delete this[key];
           }
         });
         definingProperty = false;
 
-        return boundFunction;
+        return injectedObject;
       },
 
       set (value) {
-        originalFn = value;
+        injectedObject = value;
       }
     };
   };

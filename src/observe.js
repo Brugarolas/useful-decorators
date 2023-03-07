@@ -12,7 +12,7 @@ export default function observe (observerCallback, options) {
 
     const { configurable } = descriptor;
 
-    const newDescriptor = {
+    return {
       configurable,
 
       get () {
@@ -43,7 +43,5 @@ export default function observe (observerCallback, options) {
         delete this[key];
       }
     };
-
-    return newDescriptor;
   };
 }

@@ -27,6 +27,7 @@
     "dist/debounce.js",
     "dist/defer.js",
     "dist/delay.js",
+    "dist/immutable.js",
     "dist/memoize.js",
     "dist/observe.js",
     "dist/once.js",

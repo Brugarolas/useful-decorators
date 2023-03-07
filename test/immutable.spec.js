@@ -1,7 +1,7 @@
 import immutable from '../immutable.js';
 import { expect } from 'chai';
 
-describe('@Immutable()', () => {
+describe('@immutable()', () => {
   it('Can not mute property', () => {
     class Module {
       @immutable()
