@@ -17,4 +17,4 @@
 - @once()
 - @provide()
 - @singleton()
-- @throttle()
+- @throttle(ms, options)
