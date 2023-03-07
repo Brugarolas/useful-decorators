@@ -1,7 +1,7 @@
 # useful-decorators
  Some useful JavaScript stage-0 decorators
 
-## Instalation
+## Installation
 First, we need to install `@babel/plugin-proposal-decorators` with `legacy` option:
 
 ```bash
@@ -39,3 +39,26 @@ npm install --save useful-decorators
 - `@singleton()`
 - `@throttle(ms, options)`
 - `@watch(obj, propKey, options)`
+
+## Documentation
+
+Now let's see how to use each decorator:
+
+### `@after(fn)`
+
+```js
+const array = [];
+
+const afterFn = () => {
+  array.push('B');
+};
+
+class Module {
+  x = 81;
+
+  @after(afterFn)
+  moduleFunction () {
+    array.push('A');
+  }
+}
+```
