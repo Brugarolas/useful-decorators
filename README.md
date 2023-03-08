@@ -8,7 +8,7 @@ First, we need to install `@babel/plugin-proposal-decorators`:
 npm install --save-dev @babel/plugin-proposal-decorators
 ```
 
-Then we configure the plugin in our *Babel* config file with `legacy` option::
+Then we configure the plugin in our *Babel* config file with `legacy` option:
 
 ```json
 "plugins": [
