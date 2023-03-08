@@ -2,13 +2,13 @@
  Some useful JavaScript stage-0 decorators
 
 ## Installation
-First, we need to install `@babel/plugin-proposal-decorators` with `legacy` option:
+First, we need to install `@babel/plugin-proposal-decorators`:
 
 ```bash
 npm install --save-dev @babel/plugin-proposal-decorators
 ```
 
-Then we configure the plugin in our *Babel* config file:
+Then we configure the plugin in our *Babel* config file with `legacy` option:
 
 ```json
 "plugins": [
