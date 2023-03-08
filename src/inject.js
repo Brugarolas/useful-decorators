@@ -30,8 +30,8 @@ export default function inject (name) {
           },
 
           set (value) {
-            injectedObject = value;
             delete this[key];
+            injectedObject = value;
           }
         });
         definingProperty = false;
