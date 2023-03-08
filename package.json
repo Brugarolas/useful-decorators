@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "author": "andres-brugarolas",
   "license": "GNU v3",
-  "private": true,
+  "private": false,
   "type": "module",
   "scripts": {
     "test": "npm run build:lib && npm run build:test && mocha ./dist/test --require @babel/register",
