@@ -1,7 +1,7 @@
 {
   "name": "useful-decorators",
   "description": "Some useful JavaScript decorators",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "andres-brugarolas",
   "license": "GNU v3",
   "private": false,
