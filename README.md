@@ -283,7 +283,7 @@ class Instance {
 
 ### `@interval(ms, continueFunc)`
 
-Executes a function indefinide times in an interval. If `continueFunc` is not present, it will executes the function infinite times. If it is, it will stop when `continueFunc` returns falsy.
+Executes a function indefinite times in an interval. If `continueFunc` is not present, it will executes the function infinite times. If it is, it will stop when `continueFunc` returns falsy.
 
 ```js
 import { interval } from 'useful-decorators';
