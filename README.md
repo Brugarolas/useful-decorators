@@ -27,6 +27,7 @@ npm install --save useful-decorators
 - `@before(fn)`
 - `@bind(context)`
 - `@debounce(ms, options)`
+- `@decorate(fn)`
 - `@defer()`
 - `@delay(ms)`
 - `@immutable()`
@@ -177,6 +178,22 @@ class Module {
 ```
 
 Now userStopsTyping will only called when the user stops typing for more than 500 ms.
+
+### `@decorate(fn)`
+
+Immediately applies the provided function to the method, allowing you to wrap methods with arbitrary functions.
+
+```js
+import memoizeFn from 'lodash.memoize';
+
+class Module {
+  @decorate(memoizeFn)
+  doSomethingExpensive () {
+    count++;
+    return 1;
+  }
+}
+```
 
 ### `@defer()`
 

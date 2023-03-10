@@ -12,7 +12,10 @@
   "rules": {
     "@babel/no-invalid-this": 0,
     "@babel/object-curly-spacing": ["error", "always"],
+    "canonical/destructuring-property-newline": 0,
     "comma-dangle": ["error", "never"],
+    "array-bracket-newline": 0,
+    "array-element-newline": 0,
     "linebreak-style": 0,
     "import/extensions": 0,
     "unicorn/prefer-node-remove": 0,
