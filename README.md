@@ -185,6 +185,7 @@ Now userStopsTyping will only called when the user stops typing for more than 50
 Immediately applies the provided function to the method, allowing you to wrap methods with arbitrary functions.
 
 ```js
+import { decorate } from 'useful-decorators';
 import memoizeFn from 'lodash.memoize';
 
 class Module {
@@ -321,10 +322,12 @@ It will execute that function once every 500 milliseconds.
 Prevents a property initializer from running until the decorated property is actually looked up. Useful in certain conditions to prevent excess allocations that might otherwise not be used.
 
 ```js
-  class Foo {
-    @lazy()
-      bar = deepcloneHugeObject();
-  }
+import { lazy } from 'useful-decorators';
+
+class Foo {
+  @lazy()
+    bar = deepcloneHugeObject();
+}
 ```
 
 ### `@memoize(ms)`
