@@ -33,6 +33,7 @@ npm install --save useful-decorators
 - `@immutable()`
 - `@inject()`
 - `@interval()`
+- `@lazy()`
 - `@memoize()`
 - `@observe(cb, options)`
 - `@once()`
@@ -314,6 +315,17 @@ class Module {
 ```
 
 It will execute that function once every 500 milliseconds.
+
+### `@lazy()`
+
+Prevents a property initializer from running until the decorated property is actually looked up. Useful in certain conditions to prevent excess allocations that might otherwise not be used.
+
+```js
+  class Foo {
+    @lazy()
+      bar = deepcloneHugeObject();
+  }
+```
 
 ### `@memoize(ms)`
 
