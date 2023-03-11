@@ -32,9 +32,10 @@ npm install --save useful-decorators
 - `@delay(ms)`
 - `@immutable()`
 - `@inject()`
-- `@interval()`
+- `@interval(ms, continueFunc)`
 - `@lazy()`
 - `@memoize()`
+- `@mixin([class1, class2])`
 - `@observe(cb, options)`
 - `@once()`
 - `@provide()`
@@ -196,6 +197,49 @@ class Module {
   }
 }
 ```
+
+### `@mixin([baseClass1, baseClass2])`
+
+Inherit all the methods from the base classes except existing ones.
+
+```js
+class FirstComponent {
+  render () {
+    return 42;
+  }
+
+  init () {
+    return 1;
+  }
+
+  destroy () {
+    return 1;
+  }
+}
+
+class SecondComponent {
+  render () {
+    return 43;
+  }
+
+  mount () {
+    return 2;
+  }
+
+  destroy () {
+    return 2;
+  }
+}
+
+@mixin([FirstComponent, SecondComponent])
+class FinalComponent {
+  destroy () {
+    return 3;
+  }
+}
+```
+
+In FinalCompoent: `render()` would return `43`, `init()` would return 1, `mount()` would return 2, and `destroy()` would return 3.
 
 ### `@defer()`
 
