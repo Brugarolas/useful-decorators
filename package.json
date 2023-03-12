@@ -1,7 +1,7 @@
 {
   "name": "useful-decorators",
   "description": "Some useful JavaScript decorators",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "andres-brugarolas",
   "license": "GNU v3",
   "private": false,
@@ -39,7 +39,7 @@
     "dist/provide.js",
     "dist/singleton.js",
     "dist/throttle.js",
-    "dist/utils/heplers.js",
+    "dist/utils/helpers.js",
     "dist/utils/injects.js"
   ],
   "dependencies": {
