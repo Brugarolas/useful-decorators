@@ -18,6 +18,12 @@ Then we configure the plugin in our *Babel* config file with `legacy` option:
 ]
 ```
 
+If you also use `babel-preset-minify` you should also use the following configuration, otherwise errors will be thrown (at least at the current version `0.5.2`):
+
+```json
+["minify", { "builtIns": false, "deadcode": false, "mangle": false }],
+```
+
 Now we can properly install and use `useful-decorators`:
 ```bash
 npm install --save useful-decorators
